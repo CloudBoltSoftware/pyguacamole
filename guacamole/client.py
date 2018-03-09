@@ -98,7 +98,7 @@ class GuacamoleClient(object):
             idx = self._buffer.find(INST_TERM, start)
             if idx != -1:
                 # instruction was fully received!
-                line = str(self._buffer[:idx + 1])
+                line = self._buffer[:idx + 1].decode('utf-8')
                 self._buffer = self._buffer[idx + 1:]
                 self.logger.debug('Received instruction: %s' % line)
                 return line
