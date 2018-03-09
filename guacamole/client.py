@@ -22,6 +22,8 @@ PROTOCOL_NAME = 'guacamole'
 
 BUF_LEN = 4096
 
+INST_TERM = INST_TERM.encode()
+
 
 class GuacamoleClient(object):
     """Guacamole Client class."""
