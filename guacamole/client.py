@@ -121,7 +121,7 @@ class GuacamoleClient(object):
         Send encoded instructions to Guacamole guacd server.
         """
         self.logger.debug('Sending data: %s' % data)
-        self.client.sendall(data)
+        self.client.sendall(data.encode())
 
     def read_instruction(self):
         """
@@ -132,7 +132,9 @@ class GuacamoleClient(object):
 
     def send_instruction(self, instruction):
         """
-        Send instruction after encoding.
+        Send instruction after encoding. This doesn't encode to bytes,
+        but instead to a str because Instruction.encode returns a str.
+        Encoding to bytes happens in self.send().
         """
         self.logger.debug('Sending instruction: %s' % str(instruction))
         return self.send(instruction.encode())
